@@ -4,7 +4,7 @@
 _ipu_ver=ipu6ep
 pkgname=intel-ipu6ep-camera-hal-git-fix
 _pkgname=ipu6-camera-hal
-pkgver=r95.da2e282
+pkgver=r126.c933525
 pkgrel=1
 pkgdesc="Intel IPU6 camera HAL (Alder Lake)"
 arch=('x86_64')
@@ -14,7 +14,7 @@ depends=('intel-ipu6-dkms-git' 'intel-ipu6ep-camera-bin')
 makedepends=('git' 'cmake')
 provides=(ipu6-camera-hal)
 conflicts=('intel-ipu6-camera-hal-git' 'intel-ipu6ep-camera-hal-git')
-source=("git+${url}.git#commit=da2e2821244f21b95bcb37a1271bf73360c4669e")
+source=("git+${url}.git#commit=c933525a6efe8229a7129b7b0b66798f19d2bef7")
 sha256sums=('SKIP')
 
 prepare() {
@@ -32,7 +32,12 @@ build() {
         -DCMAKE_BUILD_TYPE=Release      \
         -DIPU_VER=$_ipu_ver             \
         -DUSE_PG_LITE_PIPE=ON           \
-        -DCMAKE_INSTALL_PREFIX="/usr"
+        -DCMAKE_INSTALL_PREFIX="/usr" \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DBUILD_CAMHAL_ADAPTOR=ON \
+        -DBUILD_CAMHAL_PLUGIN=ON \
+        -DIPU_VERSIONS="ipu6;ipu6ep;ipu6epmtl"
     cmake --build build
 }
 

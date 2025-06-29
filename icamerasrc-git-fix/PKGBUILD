@@ -2,7 +2,7 @@
 # Still needed as latest commit of icamerasrc does not work
 _pkgname=icamerasrc
 pkgname=icamerasrc-git-fix
-pkgver=r59.17841ab
+pkgver=r89.7f90219
 pkgrel=1
 pkgdesc="Intel IPU6 camera source for GStreamer"
 arch=('x86_64')
@@ -17,7 +17,7 @@ makedepends=('git'
              'make'
              'gcc')
 conflicts=('icamerasrc-git')
-source=("git+${url}.git#commit=17841ab6249aaa69bd9b3959262bf182dee74111")
+source=("git+${url}.git#commit=7f90219b0cdc00b263415e09eb8c3687daf06ab9")
 sha256sums=('SKIP')
 
 prepare() {
